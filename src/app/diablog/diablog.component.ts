@@ -1,5 +1,7 @@
+import { ApiService } from './../Service/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-diablog',
@@ -9,7 +11,11 @@ import { Component, OnInit } from '@angular/core';
 export class DiablogComponent implements OnInit {
   kindProduct: string[] = ['New', 'Like new', 'Second hand'];
   productForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
+    private dialogRef: MatDialogRef<DiablogComponent>
+  ) {}
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
@@ -22,6 +28,17 @@ export class DiablogComponent implements OnInit {
     });
   }
   addProduct() {
-    console.log(this.productForm.value);
+    if (this.productForm.valid) {
+      this.apiService.postProduct(this.productForm.value).subscribe({
+        next: (res) => {
+          alert('Product added successfully');
+          this.productForm.reset();
+          this.dialogRef.close('save');
+        },
+        error: () => {
+          alert('Error while adding product');
+        },
+      });
+    }
   }
 }

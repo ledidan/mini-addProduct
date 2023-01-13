@@ -1,9 +1,31 @@
 {
-  "posts": [
+  "productList": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "productName": "sadwad",
+      "category": "Stacks",
+      "kindProduct": "Like new",
+      "price": 43,
+      "comment": "dsfsdafsaefsafsaf",
+      "date": "2023-01-02T17:00:00.000Z",
+      "id": 1
+    },
+    {
+      "productName": "Mercedes",
+      "category": "Electronic",
+      "kindProduct": "Second hand",
+      "price": 73,
+      "comment": "rewqverwqrewqvrewqvrewqrv",
+      "date": "2023-01-10T17:00:00.000Z",
+      "id": 2
+    },
+    {
+      "productName": "Sunami",
+      "category": "Electronic",
+      "kindProduct": "Second hand",
+      "price": 100,
+      "comment": "This is Sunami stacks ",
+      "date": "2023-01-17T17:00:00.000Z",
+      "id": 3
     }
   ],
   "comments": [
