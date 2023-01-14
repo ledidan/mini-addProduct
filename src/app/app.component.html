@@ -57,7 +57,7 @@
           <button mat-icon-button color="primary" (click)="editProduct(row)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn">
+          <button mat-icon-button color="warn" (click)="deleteProduct(row.id)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
@@ -72,6 +72,6 @@
       </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[25]" aria-label="Select page of users"></mat-paginator>
   </div>
 </div>

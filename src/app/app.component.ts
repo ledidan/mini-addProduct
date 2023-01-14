@@ -47,13 +47,13 @@ export class AppComponent implements OnInit {
       width: '30%',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe((val) => (val === 'save' ? this.getAllProducts() : null));
   }
   getAllProducts() {
     return this.ApiService.getProduct().subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -64,9 +64,23 @@ export class AppComponent implements OnInit {
     });
   }
   editProduct(row: any) {
-    this.dialog.open(DiablogComponent, {
-      width: '30%',
-      data: row,
+    this.dialog
+      .open(DiablogComponent, {
+        width: '30%',
+        data: row,
+      })
+      .afterClosed()
+      .subscribe((val) => (val === 'update' ? this.getAllProducts() : null));
+  }
+  deleteProduct(id: number) {
+    this.ApiService.deleteProduct(id).subscribe({
+      next: (res) => {
+        console.log('Deleted successfully');
+        this.getAllProducts();
+      },
+      error: (err) => {
+        console.log('Failed to delete product');
+      },
     });
   }
 }
